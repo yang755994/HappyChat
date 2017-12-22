@@ -45,11 +45,14 @@ function userLogin() {
         userNick = $('#nick').val().trim();
     }
     if (userNick) {
+    		debugger;
         if (!window.WebSocket) {
             window.WebSocket = window.MozWebSocket;
         }
         if (window.WebSocket) {
-            window.socket = new WebSocket("ws://chat.wolfbe.com:9688/websocket");
+        		var url = "ws://localhost:9688/websocket";
+        		// var url = "ws://chat.wolfbe.com:9688/websocket";
+            window.socket = new WebSocket(url);
             window.socket.onmessage = function (event) {
                 var data = eval("(" + event.data + ")");
                 console.log("onmessage data: " + JSON.stringify(data));
